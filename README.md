@@ -10,8 +10,8 @@
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
 - [Pre-Requisites](#pre-requisites)
-- [Running the Application](#running-the-application)
 - [Environmental Variables](#environmental-variables)
+- [Running the Application](#running-the-application)
 - [Callback URLs](#callback-urls)
   - [Ngrok](#ngrok)
 
@@ -30,14 +30,6 @@ In order to use the Bandwidth API users need to set up the appropriate applicati
 To create an application log into the [Bandwidth Dashboard](https://dashboard.bandwidth.com/) and navigate to the `Applications` tab.  Fill out the **New Application** form selecting the service that the application will be used for (this sample app uses a messaging application). All Bandwidth services require publicly accessible Callback URLs, for more information on how to set one up see [Callback URLs](#callback-urls).
 
 For more information about API credentials see our [Account Credentials](https://dev.bandwidth.com/docs/account/credentials) page.
-# Running the Application
-
-Use the following command to run the application:
-
-```sh
-cd SendAutoRespond/
-dotnet run
-```
 
 # Environmental Variables
 
@@ -48,6 +40,15 @@ BW_ACCOUNT_ID                        # Your Bandwidth Account Id
 BW_USERNAME                          # Your Bandwidth API Username
 BW_PASSWORD                          # Your Bandwidth API Password
 BW_MESSAGING_APPLICATION_ID          # Your Messaging Application Id created in the dashboard]
+```
+
+# Running the Application
+
+Use the following command to run the application:
+
+```sh
+cd SendAutoRespond/
+dotnet run
 ```
 
 # Callback URLs
