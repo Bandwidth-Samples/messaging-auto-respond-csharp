@@ -39,7 +39,7 @@ The sample app uses the below environmental variables.
 BW_ACCOUNT_ID                        # Your Bandwidth Account Id
 BW_USERNAME                          # Your Bandwidth API Username
 BW_PASSWORD                          # Your Bandwidth API Password
-BW_MESSAGING_APPLICATION_ID          # Your Messaging Application Id created in the dashboard]
+BW_MESSAGING_APPLICATION_ID          # Your Messaging Application Id created in the dashboard
 ```
 
 # Running the Application
