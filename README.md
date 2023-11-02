@@ -1,21 +1,27 @@
-# Sample App Title
+# Send Auto Response C#
 
-<a href="http://dev.bandwidth.com">
-  <img src="https://s3.amazonaws.com/bwdemos/BW-VMP.png" title="Product Quick Start Guide" alt="Product Quick Start Guide"/> <!--src should be image located in repo-->
+<a href="http://dev.bandwidth.com/docs/messaging/quickStart">
+  <img src="./icon-messaging.svg" title="Messaging Quick Start Guide" alt="Messaging Quick Start Guide"/>
 </a>
 
  # Table of Contents
 
-* [Description](#description)
-* [Pre-Requisites](#pre-requisites)
-* [Running the Application](#running-the-application)
-* [Environmental Variables](#environmental-variables)
-* [Callback URLs](#callback-urls)
-  * [Ngrok](#ngrok)
+- [Send Auto Response C#](#send-auto-response-c)
+- [Table of Contents](#table-of-contents)
+- [Description](#description)
+- [Pre-Requisites](#pre-requisites)
+- [Running the Application](#running-the-application)
+- [Environmental Variables](#environmental-variables)
+- [Callback URLs](#callback-urls)
+  - [Ngrok](#ngrok)
 
 # Description
 
-A short description of your sample app and its capabilities.
+This app automatically responds to texts sent to the associated Bandwidth number. Any texts sent to the `BW_NUMBER` will be auto-responded to using the auto response map. Valid words are: `STOP`, `QUIT`, `HELP`, and `INFO`. 
+
+To use this app, you must check the "Use multiple callback URLs" box on the application page in Dashboard. Then in Dashboard, set the INBOUND CALLBACK to `/callbacks/inbound/messaging` and the STATUS CALLBACK to `/callbacks/outbound/messaging/status`. The same can be accomplished via the Dashboard API by setting InboundCallbackUrl and OutboundCallbackUrl respectively.
+
+Inbound callbacks are sent notifying you of a received message on a Bandwidth number, this app sends a custom response to those messages based on their content. Outbound callbacks are status updates for messages sent from a Bandwidth number, this app has a dedicated response for each type of status update.
 
 # Pre-Requisites
 
@@ -27,10 +33,11 @@ For more information about API credentials see our [Account Credentials](https:/
 
 # Running the Application
 
-Use the following command/s to run the application:
+Use the following command to run the application:
 
 ```sh
-# start command here
+cd SendAutoRespond/
+dotnet run
 ```
 
 # Environmental Variables
@@ -42,28 +49,25 @@ BW_ACCOUNT_ID                        # Your Bandwidth Account Id
 BW_USERNAME                          # Your Bandwidth API Username
 BW_PASSWORD                          # Your Bandwidth API Password
 BW_NUMBER                            # The Bandwidth phone number involved with this application
-USER_NUMBER                          # The user's phone number involved with this application
-BW_VOICE_APPLICATION_ID              # Your Voice Application Id created in the dashboard
 BW_MESSAGING_APPLICATION_ID          # Your Messaging Application Id created in the dashboard
-BASE_CALLBACK_URL                    # Your public base url to receive Bandwidth Webhooks. No trailing '/'
 LOCAL_PORT                           # The port number you wish to run the sample on
 ```
 
 # Callback URLs
 
-For a detailed introduction, check out our [Bandwidth Product Specific Callbacks](https://dev.bandwidth.com/docs/messaging/webhooks) page.
+For a detailed introduction, check out our [Bandwidth Messaging Callbacks](https://dev.bandwidth.com/docs/messaging/webhooks) page.
 
 Below are the callback paths:
-* **Should follow `/callbacks/{direction}/{service}` conventions**
-* `<add other callbacks>`
+* `/callbacks/outbound/messaging/status` For Outbound Status Callbacks
+* `/callbacks/inbound/messaging` For Inbound Message Callbacks
 
 ## Ngrok
 
 A simple way to set up a local callback URL for testing is to use the free tool [ngrok](https://ngrok.com/).  
 After you have downloaded and installed `ngrok` run the following command to open a public tunnel to your port (`$LOCAL_PORT`)
 
-```sh
+```cmd
 ngrok http $LOCAL_PORT
 ```
 
-You can view your public URL at `http://127.0.0.1:{LOCAL_PORT}` after ngrok is running.  You can also view the status of the tunnel and requests/responses here.
+You can view your public URL at `http://127.0.0.1:4040` after ngrok is running.  You can also view the status of the tunnel and requests/responses here.
